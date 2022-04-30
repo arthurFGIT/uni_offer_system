@@ -1,0 +1,61 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Profileditor</title>
+    </head>
+    <body>        
+        <h1>Ihre Daten</h1>
+
+        <form action="#" th:action="@{/profileditor}" method="post">
+            <div class="input">
+                <label for="name">Name</label>
+                <input type="text" name="name">
+            </div>
+            <div class="input">
+                <label for="gebdatum">Geburtsdatum</label>
+                <input type="date" name="gebdatum">
+            </div>
+            <div class="input">
+                <label for="adresse">Adresse</label>
+                <input type="text" name="adresse">
+            </div>
+            <div class="input">
+                <label for="email">eMail</label>
+                <input type="text" name="email">
+            </div>
+            <div class="input">
+                <label for="interessen">Interessen (durch Komma getrennt)</label>
+                <input type="text" name="interessen">
+            </div>
+            <div>
+                <input class="btn" type="submit" value="OK"/>
+            </div>
+            <div>
+                <p th:text="'Ihr BSI Wert beträgt:' + ${bsiwert}"></p>
+            </div>
+        </form>
+        <div>
+            
+        </div>
+        <div>
+            <p>Geb.</p>
+            <p></p>
+        </div>
+        <div>
+            <p>Adresse</p>
+            <p></p>
+        </div>
+        <div>
+            <p>eMail</p>
+            <p></p>
+        </div>
+        <div>
+            <p>Lieblingsfarbe</p>
+            <p></p>
+        </div>
+
+        <h2>Interessen</h2>
+
+    </body>
+</html>

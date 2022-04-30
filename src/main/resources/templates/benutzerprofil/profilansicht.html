@@ -1,0 +1,33 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Benutzerprofil</title>
+    </head>
+    <body>        
+        <h1>Profilansicht</h1>
+        <div>
+            <p>Name</p>
+            <p name="name" th:text="${name}">Test</p>
+        </div>
+        <div>
+            <p>Geb.</p>
+            <p name="gebdatum" th:text="${gebdatum}"></p>
+        </div>
+        <div>
+            <p>Adresse</p>
+            <p name="adresse" th:text="${adresse}"></p>
+        </div>
+        <div>
+            <p>eMail</p>
+            <p name="email" th:text="${email}"></p>
+        </div>
+        <div>
+            <p>Lieblingsfarbe</p>
+            <p name="lieblingsfarbe" th:text="${lieblingsfarbe}"></p>
+        </div>
+
+        <h2>Interessen</h2>
+        <button><a href="@{/profileditor}">Profil bearbeiten</a></button>
+    </body>
+</html>
