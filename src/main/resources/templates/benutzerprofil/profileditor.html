@@ -4,58 +4,106 @@ xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Profileditor</title>
     </head>
-    <body>        
-        <h1>Ihre Daten</h1>
-
-        <form action="#" th:action="@{/profileditor}" method="post">
-            <div class="input">
-                <label for="name">Name</label>
-                <input type="text" name="name">
-            </div>
-            <div class="input">
-                <label for="gebdatum">Geburtsdatum</label>
-                <input type="date" name="gebdatum">
-            </div>
-            <div class="input">
-                <label for="adresse">Adresse</label>
-                <input type="text" name="adresse">
-            </div>
-            <div class="input">
-                <label for="email">eMail</label>
-                <input type="text" name="email">
-            </div>
-            <div class="input">
-                <label for="interessen">Interessen (durch Komma getrennt)</label>
-                <input type="text" name="interessen">
-            </div>
-            <div>
-                <input class="btn" type="submit" value="OK"/>
-            </div>
-            <div>
-                <p th:text="'Ihr BSI Wert beträgt:' + ${bsiwert}"></p>
-            </div>
-        </form>
-        <div>
-            
-        </div>
-        <div>
-            <p>Geb.</p>
-            <p></p>
-        </div>
-        <div>
-            <p>Adresse</p>
-            <p></p>
-        </div>
-        <div>
-            <p>eMail</p>
-            <p></p>
-        </div>
-        <div>
-            <p>Lieblingsfarbe</p>
-            <p></p>
-        </div>
-
-        <h2>Interessen</h2>
-
+    <body> 
+        <div class="box">
+            <h1>Ihre Daten bearbeiten:</h1>
+            <form th:method="post" th:action="@{/benutzerprofil/bearbeiten}"
+            th:object="${profil}">
+                <div class="input">
+                    <label>Name</label>
+                    <input class="input" type="text" name="name" th:field="*{name}" th:value="${profil.name}">
+                </div>
+                <div class="input">
+                    <label>Geburtsdatum</label> 
+                    <input class="input" type="date" name="geburtsdatum" th:field="*{geburtsdatum}" th:value="${profil.geburtsdatum}">
+                </div>     
+                <div class="input">
+                    <label>Adresse</label>
+                    <input class="input" type="text" name="adresse" th:field="*{adresse}" th:value="${profil.adresse}">
+                </div>     
+                <div class="input">
+                    <label>Email</label>
+                    <input class="input" type="text" name="email" th:field="*{email}" th:value="${profil.email}">
+                </div>      
+                <div class="input">
+                    <label>Lieblingsfarbe</label>
+                    <input class="input" type="color" name="lieblingsfarbe" th:field="*{lieblingsfarbe}" th:value="${profil.lieblingsfarbe}">
+                </div>     
+                <div class="input">
+                    <label>Interessen (durch Komma getrennt)</label>
+                    <input class="input" type="text" name="interessen" th:field="*{interessen}" th:value="${profil.interessen}">
+                </div>   
+                <div>
+                    <button type="submit" class="btn">Speichern</button>
+                    <a class="btn-neg" th:href="@{/benutzerprofil}">Abbrechen</a>
+                </div>  
+            </form>
+        </div>       
     </body>
 </html>
+<style>
+body{
+    background-color: #f3f3f9;
+}
+
+.box{
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.31);
+    background-color: white;
+    margin: 10% auto;
+    width: 500px;
+    height: 650px;
+    padding: 50px;
+}
+
+.flex{
+    display: flex;
+}
+
+.input{
+    display: grid;
+    margin-bottom: 10px;
+}
+
+.input input{
+    padding: 5px;
+    color: #343a40;
+    background-color: #3D426B10;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    display: flex;
+}
+
+h1, h2, h3, h4, p, label, input, a, button{
+    font-family: 'Poppins', sans-serif;
+    color: #343a40;
+}
+
+.btn{
+    color: white;
+    background-color: #3D426B;
+    border-radius: 3px;
+    padding: 8px 30px;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 14px;
+}
+.btn-neg{
+    color: #3D426B;
+    background-color: #3D426B20;
+    border-radius: 3px;
+    padding: 8px 30px;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 14px;
+}
+a{
+        text-decoration: none;
+
+    }
+</style>

@@ -15,7 +15,6 @@ public class BenutzerProfil{
     private String email = "";
     private String lieblingsfarbe = "";
     private String interessen = "";
-    private List<String> interessenListe = new ArrayList<String>();
 
     
     @Override
@@ -114,13 +113,11 @@ public class BenutzerProfil{
     }
 
     public List<String> getInteressenListe(){
+        List<String> interessenListe = new ArrayList<String>();
         for(String x : interessen.split(",")){
-            interessenListe.add(x.replaceAll("\\s+",""));
+            interessenListe.add(x.trim());
         }        
         return interessenListe;
     }
-
-    
-
 
 }

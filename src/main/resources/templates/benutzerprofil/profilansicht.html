@@ -4,30 +4,83 @@ xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Benutzerprofil</title>
     </head>
-    <body>        
-        <h1>Profilansicht</h1>
-        <div>
-            <p>Name</p>
-            <p name="name" th:text="${name}">Test</p>
-        </div>
-        <div>
-            <p>Geb.</p>
-            <p name="gebdatum" th:text="${gebdatum}"></p>
-        </div>
-        <div>
-            <p>Adresse</p>
-            <p name="adresse" th:text="${adresse}"></p>
-        </div>
-        <div>
-            <p>eMail</p>
-            <p name="email" th:text="${email}"></p>
-        </div>
-        <div>
-            <p>Lieblingsfarbe</p>
-            <p name="lieblingsfarbe" th:text="${lieblingsfarbe}"></p>
-        </div>
-
-        <h2>Interessen</h2>
-        <button><a href="@{/profileditor}">Profil bearbeiten</a></button>
+    <body>  
+        <div class="box">
+            <h1>Profilansicht</h1>
+            <div class="text">
+                <strong>Name</strong>
+                <p name="name" th:text="${profil.name}">Test</p>
+            </div>
+            <div class="text">
+                <strong>Geb.</strong>
+                <p name="geburtsdatum" th:text="${profil.geburtsdatum}"></p>
+            </div>
+            <div class="text">
+                <strong>Adresse</strong>
+                <p name="adresse" th:text="${profil.adresse}"></p>
+            </div>
+            <div class="text">
+                <strong>eMail</strong>
+                <p name="email" th:text="${profil.email}"></p>
+            </div>
+            <div class="text">
+                <strong>Lieblingsfarbe</strong>
+                <p name="lieblingsfarbe" th:text="${profil.lieblingsfarbe}"></p>
+            </div>
+            <h2>Interessen</h2>
+            <ol>
+                <li th:each="interessen : ${profil.interessenListe}" th:text="${interessen}"></li>
+            </ol>
+            <a class="btn" th:href="@{/benutzerprofil/bearbeiten}">Bearbeiten</a>
+        </div>      
     </body>
 </html>
+
+<style>
+    body{
+        background-color: #f3f3f9;
+    }
+    p{
+        margin: 0 !important;
+    }
+    
+    .box{
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.31);
+        background-color: white;
+        margin: 10% auto;
+        width: 500px;
+        height: 400px;
+        padding: 50px;
+    }
+    
+    .flex{
+        display: flex;
+    }
+    
+    .text{
+        display: flex;
+        border-bottom: 2px solid #3D426B20;
+        justify-content: space-between;
+    }
+    
+    h1, h2, h3, h4, p, label, strong, a{
+        font-family: 'Poppins', sans-serif;
+        color: #343a40;
+    }
+    
+    .btn{
+        color: white;
+        background-color: #3D426B;
+        border-radius: 3px;
+        padding: 8px 30px;
+        outline: none !important;
+        border: none;
+        cursor: pointer;
+        outline: inherit;
+    }
+    a{
+        text-decoration: none;
+
+    }
+    </style>
