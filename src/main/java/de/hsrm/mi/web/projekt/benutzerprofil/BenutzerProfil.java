@@ -5,16 +5,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class BenutzerProfil{
+    @Size(min=3,max=60, message = "Name muss mindestens {min} und hoechstens {max} lang sein.") 
+    @NotBlank
     private String name = "";
-    @DateTimeFormat(iso = ISO.DATE)
+
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Past
+    @NotNull
     private LocalDate geburtsdatum =  LocalDate.of(1,1,1);
+
+    @NotBlank
     private String adresse = "";
-    private String email = "";
+
+    @Email
+    private String email = null;
+
     private String lieblingsfarbe = "";
+
+    @NotBlank
     private String interessen = "";
 
     
