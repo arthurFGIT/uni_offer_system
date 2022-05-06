@@ -2,36 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Benutzerprofil</title>
+        <title th:text="#{profilansicht.titel}">Benutzerprofil</title>
     </head>
     <body>  
         <div class="box">
-            <h1>Profilansicht</h1>
+            <h1 th:text="#{profil.ihredaten}">Ihre Daten</h1>
             <div class="text">
-                <strong>Name</strong>
+                <strong th:text="#{profil.name}">Name</strong>
                 <p name="name" th:text="${profil.name}">Test</p>
             </div>
             <div class="text">
-                <strong>Geb.</strong>
+                <strong th:text="#{profil.geburtsdatum}">Geb.</strong>
                 <p name="geburtsdatum" th:text="${profil.geburtsdatum}"></p>
             </div>
             <div class="text">
-                <strong>Adresse</strong>
+                <strong th:text="#{profil.adresse}">Adresse</strong>
                 <p name="adresse" th:text="${profil.adresse}"></p>
             </div>
             <div class="text">
-                <strong>eMail</strong>
+                <strong th:text="#{profil.email}">eMail</strong>
                 <p name="email" th:text="${profil.email}"></p>
             </div>
             <div class="text">
-                <strong>Lieblingsfarbe</strong>
+                <strong th:text="#{profil.lieblingsfarbe}">Lieblingsfarbe</strong>
                 <p name="lieblingsfarbe" th:text="${profil.lieblingsfarbe}"></p>
             </div>
-            <h2>Interessen</h2>
+            <h2 th:text="#{profil.interessen}">Interessen</h2>
             <ol>
                 <li th:each="interessen : ${profil.interessenListe}" th:text="${interessen}"></li>
             </ol>
-            <a class="btn" th:href="@{/benutzerprofil/bearbeiten}">Bearbeiten</a>
+            <a class="btn" th:href="@{/benutzerprofil/bearbeiten}" th:text="#{profil.bearbeiten}">Bearbeiten</a>
         </div>      
     </body>
 </html>

@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.validierung.Bunt;
 public class BenutzerProfil{
     @Size(min=3,max=60, message = "Name muss mindestens {min} und hoechstens {max} lang sein.") 
     @NotBlank
@@ -30,6 +31,7 @@ public class BenutzerProfil{
     @Email
     private String email = null;
 
+    @Bunt
     private String lieblingsfarbe = "";
 
     @NotBlank
