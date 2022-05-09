@@ -3,8 +3,14 @@
 xmlns:th="http://www.thymeleaf.org">
     <head>
         <title th:text="#{profilbearbeiten.titel}">Profileditor</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body> 
+        <div class="language flex-end">
+            <a th:href="@{?sprache=de}"><img src="/images/de-flag.png" alt=""></a>
+            <a th:href="@{?sprache=en}"><img src="/images/en-flag.png" alt=""></a>
+            <a th:href="@{?sprache=nl}"><img src="/images/nl-flag.png" alt=""></a>
+        </div> 
         <div class="box">
             <h1 th:text="#{profilbearbeiten.titel}">Ihre Daten bearbeiten:</h1>
             <form th:method="post" th:action="@{/benutzerprofil/bearbeiten}"
@@ -31,7 +37,7 @@ xmlns:th="http://www.thymeleaf.org">
                 </div>      
                 <div class="input">
                     <label th:text="#{profil.lieblingsfarbe}">Lieblingsfarbe</label>
-                    <input class="input" type="text" name="lieblingsfarbe" th:field="*{lieblingsfarbe}" th:value="${profil.lieblingsfarbe}" th:errorclass="err"/>
+                    <input class="input" type="color" name="lieblingsfarbe" th:field="*{lieblingsfarbe}" th:value="${profil.lieblingsfarbe}" th:errorclass="err"/>
                     <span class="err-text" th:if="${#fields.hasErrors('lieblingsfarbe')}" th:errors="*{lieblingsfarbe}"></span>
                 </div>     
                 <div class="input">
@@ -48,8 +54,11 @@ xmlns:th="http://www.thymeleaf.org">
     </body>
 </html>
 <style>
-body{
+    body{
     background-color: #f3f3f9;
+}
+p{
+    margin: 0 !important;
 }
 
 .box{
@@ -65,6 +74,44 @@ body{
 .flex{
     display: flex;
 }
+.flex-end{
+    display: flex;
+    justify-content: end;
+}
+
+.text{
+    display: flex;
+    border-bottom: 2px solid #3D426B20;
+    justify-content: space-between;
+}
+
+h1, h2, h3, h4, p, label, strong, a, li{
+    font-family: 'Poppins', sans-serif;
+    color: #343a40;
+}
+
+.btn{
+    color: white;
+    background-color: #3D426B;
+    border-radius: 3px;
+    padding: 8px 30px;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 14px;
+}
+a{
+    text-decoration: none;
+
+}
+.language img{
+    width: 30px;
+    margin: 5px;
+}
+
+
+
 
 .input{
     display: grid;
@@ -81,22 +128,6 @@ body{
     display: flex;
 }
 
-h1, h2, h3, h4, p, label, input, a, button{
-    font-family: 'Poppins', sans-serif;
-    color: #343a40;
-}
-
-.btn{
-    color: white;
-    background-color: #3D426B;
-    border-radius: 3px;
-    padding: 8px 30px;
-    outline: none !important;
-    border: none;
-    cursor: pointer;
-    outline: inherit;
-    font-size: 14px;
-}
 .btn-neg{
     color: #3D426B;
     background-color: #3D426B20;
@@ -108,9 +139,7 @@ h1, h2, h3, h4, p, label, input, a, button{
     outline: inherit;
     font-size: 14px;
 }
-a{
-        text-decoration: none;
-    }
+
 .err{
     border: 2px solid red !important;
 }

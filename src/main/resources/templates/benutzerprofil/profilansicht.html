@@ -3,8 +3,14 @@
 xmlns:th="http://www.thymeleaf.org">
     <head>
         <title th:text="#{profilansicht.titel}">Benutzerprofil</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>  
+        <div class="language flex-end">
+            <a th:href="@{?sprache=de}"><img src="/images/de-flag.png" alt=""></a>
+            <a th:href="@{?sprache=en}"><img src="/images/en-flag.png" alt=""></a>
+            <a th:href="@{?sprache=nl}"><img src="/images/nl-flag.png" alt=""></a>
+        </div>  
         <div class="box">
             <h1 th:text="#{profil.ihredaten}">Ihre Daten</h1>
             <div class="text">
@@ -35,52 +41,3 @@ xmlns:th="http://www.thymeleaf.org">
         </div>      
     </body>
 </html>
-
-<style>
-    body{
-        background-color: #f3f3f9;
-    }
-    p{
-        margin: 0 !important;
-    }
-    
-    .box{
-        border-radius: 10px;
-        box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.31);
-        background-color: white;
-        margin: 10% auto;
-        width: 500px;
-        height: 400px;
-        padding: 50px;
-    }
-    
-    .flex{
-        display: flex;
-    }
-    
-    .text{
-        display: flex;
-        border-bottom: 2px solid #3D426B20;
-        justify-content: space-between;
-    }
-    
-    h1, h2, h3, h4, p, label, strong, a{
-        font-family: 'Poppins', sans-serif;
-        color: #343a40;
-    }
-    
-    .btn{
-        color: white;
-        background-color: #3D426B;
-        border-radius: 3px;
-        padding: 8px 30px;
-        outline: none !important;
-        border: none;
-        cursor: pointer;
-        outline: inherit;
-    }
-    a{
-        text-decoration: none;
-
-    }
-    </style>

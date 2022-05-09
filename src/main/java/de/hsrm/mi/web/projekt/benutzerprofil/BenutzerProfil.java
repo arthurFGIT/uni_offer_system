@@ -8,7 +8,6 @@ import java.util.List;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
@@ -33,7 +32,7 @@ public class BenutzerProfil{
     private String email = null;
 
     @NotNull
-    @Bunt
+    @Bunt(message="{bunt.fehler}")
     private String lieblingsfarbe = "";
 
     @NotBlank

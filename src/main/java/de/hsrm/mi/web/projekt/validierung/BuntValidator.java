@@ -5,8 +5,6 @@ import java.util.regex.Pattern;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 public class BuntValidator implements ConstraintValidator<Bunt, String> {
