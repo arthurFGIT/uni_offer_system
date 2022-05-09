@@ -31,7 +31,7 @@ xmlns:th="http://www.thymeleaf.org">
                 </div>      
                 <div class="input">
                     <label th:text="#{profil.lieblingsfarbe}">Lieblingsfarbe</label>
-                    <input class="input" type="color" name="lieblingsfarbe" th:field="*{lieblingsfarbe}" th:value="${profil.lieblingsfarbe}" th:errorclass="err"/>
+                    <input class="input" type="text" name="lieblingsfarbe" th:field="*{lieblingsfarbe}" th:value="${profil.lieblingsfarbe}" th:errorclass="err"/>
                     <span class="err-text" th:if="${#fields.hasErrors('lieblingsfarbe')}" th:errors="*{lieblingsfarbe}"></span>
                 </div>     
                 <div class="input">

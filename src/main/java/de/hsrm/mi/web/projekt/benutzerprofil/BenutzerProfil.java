@@ -9,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,21 +17,22 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import de.hsrm.mi.web.projekt.validierung.Bunt;
 public class BenutzerProfil{
-    @Size(min=3,max=60, message = "Name muss mindestens {min} und hoechstens {max} lang sein.") 
-    @NotBlank
+    @Size(min=3,max=60) 
+    @NotNull
     private String name = "";
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @Past
+    @DateTimeFormat(iso = ISO.DATE)
+    @PastOrPresent
     @NotNull
     private LocalDate geburtsdatum =  LocalDate.of(1,1,1);
 
-    @NotBlank
-    private String adresse = "";
+    @NotNull
+    private String adresse;
 
     @Email
     private String email = null;
 
+    @NotNull
     @Bunt
     private String lieblingsfarbe = "";
 

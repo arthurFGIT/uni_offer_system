@@ -36,10 +36,8 @@ public class BenutzerprofilController {
     @PostMapping("/bearbeiten")
     public String profileditor_post(@Valid @ModelAttribute("profil") BenutzerProfil profil, BindingResult result) {
         if(result.hasErrors()){
-            return "/benutzerprofil/profileditor";
+            return "benutzerprofil/profileditor";
         }
         return "redirect:/benutzerprofil";
     }
-
-
 }

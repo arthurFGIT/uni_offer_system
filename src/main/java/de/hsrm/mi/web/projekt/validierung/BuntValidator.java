@@ -17,6 +17,13 @@ public class BuntValidator implements ConstraintValidator<Bunt, String> {
         String valuePattern3 = "^#([A-Fa-f0-9]{3})$";
         String valuePattern6 = "^#([A-Fa-f0-9]{6})$";
         
+        if(value == null){
+            return false;
+        }
+        if(value == ""){
+            return true;
+        }
+
         Pattern pattern = Pattern.compile(valuePattern);
         Pattern pattern3 = Pattern.compile(valuePattern3);
         Pattern pattern6 = Pattern.compile(valuePattern6);
@@ -25,16 +32,16 @@ public class BuntValidator implements ConstraintValidator<Bunt, String> {
         Matcher matcher3 = pattern3.matcher(value);
         Matcher matcher6 = pattern6.matcher(value);
 
+
         if(matcher.matches() == true){
             String [] valueArray = value.replace("#","").split("");
             if(matcher3.matches() == true){
                 for (int i = 0; i < valueArray.length; i++) {
                     if (i >= 1 && valueArray[i].equalsIgnoreCase(valueArray[i-1])) {
-                        Logger logger = LoggerFactory.getLogger(BuntValidator.class);
-                        logger.info("Test");
                         return false;
                     }
                 }  
+                return true;
             }
             else if(matcher6.matches() == true){
                 String string1 = valueArray[0] + valueArray[1];

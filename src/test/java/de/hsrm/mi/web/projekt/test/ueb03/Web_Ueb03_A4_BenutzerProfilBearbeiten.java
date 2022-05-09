@@ -27,18 +27,19 @@ import org.springframework.test.web.servlet.MvcResult;
 import de.hsrm.mi.web.projekt.benutzerprofil.BenutzerProfil;
 import de.hsrm.mi.web.projekt.benutzerprofil.BenutzerprofilController;
 
+// https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/request/MockHttpServletRequestBuilder.html
 
+@Testable
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Testable
-class Web_Ueb03_A5_BenutzerProfilBearbeiten {
+class Web_Ueb03_A4_BenutzerprofilAnsichtBearbeiten {
     private final String TESTNAME = "Joghurta";
-    private final String TESTADRESSE = "Waldstrasse 17, 99441 Vollradisroda";
+    private final String TESTADRESSE = "Waldstraße 17, 99441 Vollradisroda";
     private final String TESTISODATUM = "2017-07-17";
 	private final LocalDate TESTDATUM = LocalDate.of(2017, 7, 17);
     private final String TESTEMAIL = "joghi@mi.hs-rm.de";
     private final String TESTLIEBLINGSFARBE = "#111222";
-    private final String TESTINTERESSEN = "weit hoppen, fern sehen  ,  Topflappen haekeln";
+    private final String TESTINTERESSEN = "weit hüpfen, fern sehen  ,  Topflappen häkeln";
     
     BenutzerProfil benutzerprofil = null;
 
@@ -76,7 +77,7 @@ class Web_Ueb03_A5_BenutzerProfilBearbeiten {
 	}
 	
 	@Test
-	@DisplayName("POST /benutzerprofil/bearbeiten mit Formulardaten füllt BenutzerProfil-Attribute und redirectet zu /benutzerprofil")
+	@DisplayName("POST /benutzerprofil/bearbeiten mit Formulardaten für BenutzerProfil-Attribute führt zu View /benutzerprofil zurück")
 	void benutzerprofil_neu_post() throws Exception {
 		// Sessionattribut vorbereiten
 		Map<String, Object> sessiondata = new HashMap<>();
