@@ -12,7 +12,10 @@ xmlns:th="http://www.thymeleaf.org">
             <a th:href="@{?sprache=nl}"><img src="/images/nl-flag.png" alt=""></a>
         </div> 
         <div class="box">
-            <h1 th:text="#{profilbearbeiten.titel}">Ihre Daten bearbeiten:</h1>
+            <div class="flex-space-between">
+                <h1 th:text="#{profilbearbeiten.titel}">Ihre Daten bearbeiten:</h1>
+                <a th:href="@{/benutzerprofil/clearsession}"><img class="img" src="/images/add-user.png" alt=""></a>
+            </div>
             <form th:method="post" th:action="@{/benutzerprofil/bearbeiten}"
             th:object="${profil}">
                 <div class="input">
@@ -54,7 +57,7 @@ xmlns:th="http://www.thymeleaf.org">
     </body>
 </html>
 <style>
-    body{
+body{
     background-color: #f3f3f9;
 }
 p{
@@ -66,7 +69,7 @@ p{
     box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.31);
     background-color: white;
     margin: 10% auto;
-    width: 500px;
+    width: 1000px;
     height: 680px;
     padding: 50px;
 }
@@ -147,5 +150,13 @@ a{
     font-size: 10px;
     font-family: 'Poppins', sans-serif;
     color: red;
+}
+.img{
+    width: 20px;
+}
+
+.flex-space-between{
+    display: flex;
+    justify-content: space-between;
 }
 </style>

@@ -1,0 +1,150 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{profilbearbeiten.titel}">Profileditor</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body> 
+        <div class="language flex-end">
+            <a th:href="@{?sprache=de}"><img src="/images/de-flag.png" alt=""></a>
+            <a th:href="@{?sprache=en}"><img src="/images/en-flag.png" alt=""></a>
+            <a th:href="@{?sprache=nl}"><img src="/images/nl-flag.png" alt=""></a>
+        </div> 
+        <div class="box">
+            <h1 th:text="#{profilliste.titel}">Profilliste</h1>
+            <table class="table">
+                <tr>
+                    <th th:text="#{profilliste.tab.name}">
+                        Name
+                    </th>
+                    <th th:text="#{profilliste.tab.geburtsdatum}">
+                        Geburtsdatums
+                    </th>
+                    <th th:text="#{profilliste.tab.email}">
+                        EPost
+                    </th>
+                    <th th:text="#{profilliste.tab.adresse}">
+                        Adresse
+                    </th>
+                    <th th:text="#{profilliste.tab.loeschen}">
+                        Löschen
+                    </th>
+                </tr>
+                <tr th:each="benutzerprofil : ${profilliste}">
+                    <td><a th:text="${benutzerprofil.name}" th:href="@{liste?op=bearbeiten&id=}+${benutzerprofil.id}"></a></td>
+                    <td th:text="${benutzerprofil.geburtsdatum}"></td>
+                    <td th:text="${benutzerprofil.email}"></td>
+                    <td th:text="${benutzerprofil.adresse}"></td>
+                    <td><a th:href="@{liste?op=loeschen&id=}+${benutzerprofil.id}"><img class="img" src="/images/x-button.png" alt=""></a></td>
+                </tr>
+            </table>
+             
+        </div>               
+    </body>
+</html>
+<style>
+    body{
+    background-color: #f3f3f9;
+}
+p{
+    margin: 0 !important;
+}
+
+.box{
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.31);
+    background-color: white;
+    margin: 10% auto;
+    width: 1000px;
+    height: 680px;
+    padding: 50px;
+}
+
+.flex{
+    display: flex;
+}
+.flex-end{
+    display: flex;
+    justify-content: end;
+}
+
+.text{
+    display: flex;
+    border-bottom: 2px solid #3D426B20;
+    justify-content: space-between;
+}
+
+h1, h2, h3, h4, p, label, strong, a, li, th, td{
+    font-family: 'Poppins', sans-serif;
+    color: #343a40;
+}
+
+.btn{
+    color: white;
+    background-color: #3D426B;
+    border-radius: 3px;
+    padding: 8px 30px;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 14px;
+}
+a{
+    text-decoration: none;
+
+}
+
+.language img{
+    width: 30px;
+    margin: 5px;
+}
+
+.table{
+    width: 100%;
+    text-align: left;
+}
+
+
+
+
+.input{
+    display: grid;
+    margin-bottom: 10px;
+}
+
+.input input{
+    padding: 5px;
+    color: #343a40;
+    background-color: #3D426B10;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    display: flex;
+}
+
+.btn-neg{
+    color: #3D426B;
+    background-color: #3D426B20;
+    border-radius: 3px;
+    padding: 8px 30px;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 14px;
+}
+
+.err{
+    border: 2px solid red !important;
+}
+.err-text{
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: red;
+}
+.img{
+    width: 20px;
+}
+</style>
