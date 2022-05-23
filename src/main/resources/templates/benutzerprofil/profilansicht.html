@@ -46,21 +46,21 @@ xmlns:th="http://www.thymeleaf.org">
 
             <div th:if="${profil.id}">
                 <div class="flex-between">
-                    <h1>Angebotsliste</h1>
+                    <h1 th:text="#{angebotsliste.titel}">Angebotsliste</h1>
                     <a th:href="@{/benutzerprofil/angebot}"><img class="img" src="/images/plus.png" alt=""></a>
                 </div>
                 <table class="table">
                     <tr>
-                        <th>
+                        <th th:text="#{angebot.editor.beschreibung}">
                             Beschreibung
                         </th>
-                        <th>
+                        <th th:text="#{angebot.editor.mindestpreis}">
                             Mindestpreis
                         </th>
-                        <th>
+                        <th th:text="#{angebot.editor.ablaufzeitpunkt}">
                             Angebotsende
                         </th>
-                        <th>
+                        <th th:text="#{profilliste.tab.loeschen}">
                             Löschen
                         </th>
                     </tr>

@@ -18,19 +18,19 @@ xmlns:th="http://www.thymeleaf.org">
             <form th:method="post" th:action="@{/benutzerprofil/angebot}" 
             th:object="${angebot}">
                 <div class="input">
-                    <label>Beschreibung</label>
+                    <label th:text="#{angebot.editor.beschreibung}">Beschreibung</label>
                     <input id="beschreibung" class="input" type="text" name="beschreibung" th:field="*{beschreibung}" th:errorclass="err"/>
                 </div>
                 <div class="input">
-                    <label>Mindestpreis</label> 
+                    <label th:text="#{angebot.editor.mindestpreis}">Mindestpreis</label> 
                     <input class="input" type="number" name="mindestpreis" th:field="*{mindestpreis}" th:errorclass="err"/>
                 </div>     
                 <div class="input">
-                    <label>Angebotsende</label>
+                    <label  th:text="#{angebot.editor.ablaufzeitpunkt}">Angebotsende</label>
                     <input class="input" type="datetime-local" name="ablaufzeitpunkt" th:field="*{ablaufzeitpunkt}" th:errorclass="err"/>
                 </div>     
                 <div class="input">
-                    <label>Abholort</label>
+                    <label  th:text="#{angebot.editor.abholort}">Abholort</label>
                     <input class="input" type="text" name="abholort" th:field="*{abholort}" th:errorclass="err"/>
                 </div>      
                 <div>
