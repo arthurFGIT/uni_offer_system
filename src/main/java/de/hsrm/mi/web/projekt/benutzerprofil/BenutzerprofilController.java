@@ -10,18 +10,20 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import de.hsrm.mi.web.projekt.angebot.Angebot;
+
 @Controller
 @RequestMapping("/benutzerprofil")
 @SessionAttributes(names = {"profil"})
 
 public class BenutzerprofilController {
-
 
     private BenutzerprofilServiceImpl bService;
     @Autowired
@@ -82,4 +84,27 @@ public class BenutzerprofilController {
         m.addAttribute("profil", bService.speichereBenutzerProfil(profil));
         return "redirect:/benutzerprofil";
     }
+
+    @PostMapping("/angebot")
+    public String angebot_post(Model m, @ModelAttribute("profil") BenutzerProfil profil, @ModelAttribute("angebot") Angebot angebot) {
+        bService.fuegeAngebotHinzu(profil.getId(), angebot);
+        profil = bService.holeBenutzerProfilMitId(profil.getId()).get();
+        m.addAttribute("profil", profil);        
+        return "redirect:/benutzerprofil";
+    }
+
+    @GetMapping("/angebot")
+    public String angebot_get(Model m){   
+        m.addAttribute("angebot", new Angebot());     
+        return "/benutzerprofil/angebotsformular";
+    }
+
+    @GetMapping("/angebot/{id}/del")
+    public String angebotLoeschen(Model m, @ModelAttribute("profil") BenutzerProfil profil, @PathVariable("id") long id) {
+        long userId = profil.getId();
+        bService.loescheAngebot(id);
+        m.addAttribute("profil", bService.holeBenutzerProfilMitId(userId).get());
+        return "redirect:/benutzerprofil";
+    }
+
 }

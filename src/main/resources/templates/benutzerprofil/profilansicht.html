@@ -21,8 +21,13 @@ xmlns:th="http://www.thymeleaf.org">
                 <strong th:text="#{profil.geburtsdatum}">Geb.</strong>
                 <p name="geburtsdatum" th:text="${profil.geburtsdatum}"></p>
             </div>
-            <div class="text">
+            <div class="text"> 
+                <div class="flex">
                 <strong th:text="#{profil.adresse}">Adresse</strong>
+                    <div th:if="${profil.lat} != null">
+                        <a th:href=@{https://www.openstreetmap.org/#map=17/${profil.lat},${profil.lon}} target="_blank" ><img src="/images/placeholder.png" alt="" class="location"></a>               
+                    </div>
+                </div>
                 <p name="adresse" th:text="${profil.adresse}"></p>
             </div>
             <div class="text">
@@ -38,6 +43,144 @@ xmlns:th="http://www.thymeleaf.org">
                 <li th:each="interessen : ${profil.interessenListe}" th:text="${interessen}"></li>
             </ol>
             <a class="btn" th:href="@{/benutzerprofil/bearbeiten}" th:text="#{profil.bearbeiten}">Bearbeiten</a>
+
+            <div th:if="${profil.id}">
+                <div class="flex-between">
+                    <h1>Angebotsliste</h1>
+                    <a th:href="@{/benutzerprofil/angebot}"><img class="img" src="/images/plus.png" alt=""></a>
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Beschreibung
+                        </th>
+                        <th>
+                            Mindestpreis
+                        </th>
+                        <th>
+                            Angebotsende
+                        </th>
+                        <th>
+                            Löschen
+                        </th>
+                    </tr>
+                    <tr th:each="angebot : ${profil.angebote}">
+                        <td><a th:href=@{https://www.openstreetmap.org/#map=17/${angebot.lat},${angebot.lon}} th:text="${angebot.beschreibung}"></a></td>
+                        <td th:text="${angebot.mindestpreis}"></td>
+                        <td th:text="${angebot.ablaufzeitpunkt}"></td>
+                        <td><a th:href="@{/benutzerprofil/angebot/{angebotId}/del(angebotId = ${angebot.id})}"><img class="img" src="/images/x-button.png" alt=""></a></td>
+                    </tr>
+                </table>
+            </div>
         </div>      
     </body>
 </html>
+<style>
+    body{
+    background-color: #f3f3f9;
+}
+p{
+    margin: 0 !important;
+}
+
+.box{
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.31);
+    background-color: white;
+    margin: 10% auto;
+    width: 1000px;
+    height: 680px;
+    padding: 50px;
+}
+
+.flex{
+    display: flex;
+}
+.flex-end{
+    display: flex;
+    justify-content: end;
+}
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.text{
+    display: flex;
+    border-bottom: 2px solid #3D426B20;
+    justify-content: space-between;
+}
+
+h1, h2, h3, h4, p, label, strong, a, li, th, td{
+    font-family: 'Poppins', sans-serif;
+    color: #343a40;
+}
+
+.btn{
+    color: white;
+    background-color: #3D426B;
+    border-radius: 3px;
+    padding: 8px 30px;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 14px;
+}
+a{
+    text-decoration: none;
+
+}
+
+.language img{
+    width: 30px;
+    margin: 5px;
+}
+
+.table{
+    width: 100%;
+    text-align: left;
+}
+
+
+
+
+.input{
+    display: grid;
+    margin-bottom: 10px;
+}
+
+.input input{
+    padding: 5px;
+    color: #343a40;
+    background-color: #3D426B10;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    display: flex;
+}
+
+.btn-neg{
+    color: #3D426B;
+    background-color: #3D426B20;
+    border-radius: 3px;
+    padding: 8px 30px;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 14px;
+}
+
+.err{
+    border: 2px solid red !important;
+}
+.err-text{
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: red;
+}
+.img{
+    width: 20px;
+}
+</style>
