@@ -22,6 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import de.hsrm.mi.web.projekt.angebot.Angebot;
+import de.hsrm.mi.web.projekt.gebot.Gebot;
 import de.hsrm.mi.web.projekt.validierung.Bunt;
 
 @Entity
@@ -58,8 +59,15 @@ public class BenutzerProfil{
 
     private double lat, lon;
 
+    @OneToMany(mappedBy = "gebieter")
+    private List<Gebot> gebote = new ArrayList<>(); 
+
     
-    @OneToMany(cascade=CascadeType.PERSIST, orphanRemoval=true, fetch = FetchType.EAGER)
+    public List<Gebot> getGebote() {
+        return gebote;
+    }
+
+    @OneToMany(mappedBy="anbieter", cascade=CascadeType.PERSIST, orphanRemoval=true, fetch = FetchType.EAGER)
     private List<Angebot> angebote = new ArrayList<>();
     
     public List<Angebot> getAngebote() {
