@@ -1,7 +1,5 @@
 package de.hsrm.mi.web.projekt.api.benutzer;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 

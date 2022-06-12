@@ -67,9 +67,7 @@ public class GebotServiceImpl implements GebotService {
         angebot.getGebote().remove(gebot);
 
         gRepository.delete(gebot);
-
-        // bServiceImpl.speichereBenutzerProfil(profil);
-        
+                
     }
     
 }
