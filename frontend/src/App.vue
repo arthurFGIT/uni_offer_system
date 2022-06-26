@@ -5,12 +5,17 @@ import AboutView from './views/AboutView.vue'
 
 <template>
   <header>
-
-    <div class="wrapper">
-      <AboutView/>
-
+    <div>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
     </div>
   </header>
+      <div>
+      <RouterView/>
+    </div>
+  <body>
+    
+  </body>
 </template>
 
 <style>

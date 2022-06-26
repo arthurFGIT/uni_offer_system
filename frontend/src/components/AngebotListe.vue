@@ -2,6 +2,8 @@
     <div class="flex-end input">
         <input type="text" v-model="suchfeld" placeholder = "Eingabe"/>
         <button class="btn" @click="clear()">clear</button>
+        <button @click="updateAngebote()">Reload</button>
+
     </div>
     <div>
         <AngebotListeItem :item="ele" v-for="ele in filteredAngebote" :key="ele.angebotid"></AngebotListeItem>
@@ -11,14 +13,14 @@
 
 <script setup lang="ts">
 import AngebotListeItem from '@/components/AngebotListeItem.vue';
-import { useFakeAngebot } from '@/services/useFakeAngebot';
+import { useAngebot } from '@/services/useAngebot';
 import { ref, computed } from 'vue';
 
-const {angebote, bietenSimulieren} = useFakeAngebot()
+const {angebote, updateAngebote} = useAngebot()
 const suchfeld = ref("")
 
 const filteredAngebote = computed(() => {
-    return angebote.value.filter(e =>
+    return angebote.angebotliste.filter(e =>
     e.beschreibung.toLowerCase()
     .includes(suchfeld.value.toLowerCase()) ||
     e.abholort.toLowerCase()

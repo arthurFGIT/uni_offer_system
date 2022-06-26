@@ -59,7 +59,7 @@ public class BenutzerprofilServiceImpl implements BenutzerprofilService {
         bRepository.deleteById(loesch);   
     }
 
-    @Override
+    @Override @Transactional
     public void fuegeAngebotHinzu(long id, Angebot angebot) {
         if(angebot.getAbholort() == null || angebot.getAbholort() == ""){
             angebot.setLat(0);

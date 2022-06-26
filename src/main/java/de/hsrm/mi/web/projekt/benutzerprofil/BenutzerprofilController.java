@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import de.hsrm.mi.web.projekt.angebot.Angebot;
+import de.hsrm.mi.web.projekt.messaging.BackendInfoService;
+import de.hsrm.mi.web.projekt.messaging.BackendOperation;
 
 @Controller
 @RequestMapping("/benutzerprofil")
@@ -26,6 +28,8 @@ import de.hsrm.mi.web.projekt.angebot.Angebot;
 public class BenutzerprofilController {
 
     private BenutzerprofilServiceImpl bService;
+
+    @Autowired private BackendInfoService bInfoService;
     @Autowired
     public BenutzerprofilController(BenutzerprofilServiceImpl bService) {
         this.bService = bService;
@@ -87,6 +91,10 @@ public class BenutzerprofilController {
 
     @PostMapping("/angebot")
     public String angebot_post(Model m, @ModelAttribute("profil") BenutzerProfil profil, @ModelAttribute("angebot") Angebot angebot) {
+        
+        bInfoService.sendInfo("angebot", BackendOperation.CREATE, angebot.getId());
+        
+        
         bService.fuegeAngebotHinzu(profil.getId(), angebot);
         profil = bService.holeBenutzerProfilMitId(profil.getId()).get();
         m.addAttribute("profil", profil);        
@@ -101,6 +109,9 @@ public class BenutzerprofilController {
 
     @GetMapping("/angebot/{id}/del")
     public String angebotLoeschen(Model m, @ModelAttribute("profil") BenutzerProfil profil, @PathVariable("id") long id) {
+        
+        bInfoService.sendInfo("angebot", BackendOperation.DELETE, id);
+        
         long userId = profil.getId();
         bService.loescheAngebot(id);
         m.addAttribute("profil", bService.holeBenutzerProfilMitId(userId).get());
