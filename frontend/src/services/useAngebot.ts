@@ -49,6 +49,7 @@ export function receiveAngebotMessages(){
         stompclient.subscribe(DEST, (message) => {
             updateAngebote();
             let backendMsg: IBackendInfoMessage = JSON.parse(message.body);
+            console.log(message.body);
         });
     };
     stompclient.onDisconnect = () => { /* Verbindung abgebaut*/ }

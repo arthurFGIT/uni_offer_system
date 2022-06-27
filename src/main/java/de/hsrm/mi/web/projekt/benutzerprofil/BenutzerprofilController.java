@@ -90,14 +90,12 @@ public class BenutzerprofilController {
     }
 
     @PostMapping("/angebot")
-    public String angebot_post(Model m, @ModelAttribute("profil") BenutzerProfil profil, @ModelAttribute("angebot") Angebot angebot) {
-        
-        bInfoService.sendInfo("angebot", BackendOperation.CREATE, angebot.getId());
-        
+    public String angebot_post(Model m, @ModelAttribute("profil") BenutzerProfil profil, @ModelAttribute("angebot") Angebot angebot) {        
         
         bService.fuegeAngebotHinzu(profil.getId(), angebot);
         profil = bService.holeBenutzerProfilMitId(profil.getId()).get();
         m.addAttribute("profil", profil);        
+        bInfoService.sendInfo("angebot", BackendOperation.CREATE, angebot.getId());
         return "redirect:/benutzerprofil";
     }
 
@@ -110,11 +108,11 @@ public class BenutzerprofilController {
     @GetMapping("/angebot/{id}/del")
     public String angebotLoeschen(Model m, @ModelAttribute("profil") BenutzerProfil profil, @PathVariable("id") long id) {
         
-        bInfoService.sendInfo("angebot", BackendOperation.DELETE, id);
-        
         long userId = profil.getId();
         bService.loescheAngebot(id);
         m.addAttribute("profil", bService.holeBenutzerProfilMitId(userId).get());
+        bInfoService.sendInfo("angebot", BackendOperation.DELETE, id);
+
         return "redirect:/benutzerprofil";
     }
 

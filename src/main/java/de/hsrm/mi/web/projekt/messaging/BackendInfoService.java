@@ -13,7 +13,7 @@ public class BackendInfoService {
 
         BackendInfoMessage bim = new BackendInfoMessage(topicname, operation, id);
 
-        message.convertAndSend("/topic/topicname", bim);
+        message.convertAndSend("/topic/" + topicname, bim);
 
 
     }
