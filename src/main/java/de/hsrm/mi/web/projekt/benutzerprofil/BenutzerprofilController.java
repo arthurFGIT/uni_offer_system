@@ -1,4 +1,5 @@
 package de.hsrm.mi.web.projekt.benutzerprofil;
+import java.security.Principal;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import de.hsrm.mi.web.projekt.angebot.Angebot;
 import de.hsrm.mi.web.projekt.messaging.BackendInfoService;
 import de.hsrm.mi.web.projekt.messaging.BackendOperation;
+import de.hsrm.mi.web.projekt.projektuser.ProjektUser;
+import de.hsrm.mi.web.projekt.projektuser.ProjektUserServiceImpl;
 
 @Controller
 @RequestMapping("/benutzerprofil")
@@ -27,19 +30,27 @@ import de.hsrm.mi.web.projekt.messaging.BackendOperation;
 
 public class BenutzerprofilController {
 
-    private BenutzerprofilServiceImpl bService;
+    @Autowired private BenutzerprofilServiceImpl bService;
+
+    @Autowired ProjektUserServiceImpl pServiceImpl;
 
     @Autowired private BackendInfoService bInfoService;
-    @Autowired
-    public BenutzerprofilController(BenutzerprofilServiceImpl bService) {
-        this.bService = bService;
-    }
+
 
     Logger logger = LoggerFactory.getLogger(BenutzerprofilController.class);
     
     @ModelAttribute("profil")
-    public void initProfil(Model m){
-        m.addAttribute("profil", new BenutzerProfil());
+    public void initProfil(Model m, Principal p){
+
+        if(p != null){
+            ProjektUser pu = pServiceImpl.findeBenutzer(p.getName());
+            if(pu != null){
+                m.addAttribute("profil", pu.getBenutzerProfil());
+            }
+            else{
+                m.addAttribute("profil", new BenutzerProfil());
+            }
+        }
     }
 
     @GetMapping

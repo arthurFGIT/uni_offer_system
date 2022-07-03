@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import de.hsrm.mi.web.projekt.angebot.Angebot;
 import de.hsrm.mi.web.projekt.benutzerprofil.BenutzerProfil;
 import de.hsrm.mi.web.projekt.benutzerprofil.BenutzerprofilService;
-import de.hsrm.mi.web.projekt.benutzerprofil.BenutzerprofilServiceImpl;
 
 @Service
 public class GebotServiceImpl implements GebotService {

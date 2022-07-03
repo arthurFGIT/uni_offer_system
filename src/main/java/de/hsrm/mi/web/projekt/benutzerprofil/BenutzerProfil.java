@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -23,6 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import de.hsrm.mi.web.projekt.angebot.Angebot;
 import de.hsrm.mi.web.projekt.gebot.Gebot;
+import de.hsrm.mi.web.projekt.projektuser.ProjektUser;
 import de.hsrm.mi.web.projekt.validierung.Bunt;
 
 @Entity
@@ -45,7 +47,7 @@ public class BenutzerProfil{
     private LocalDate geburtsdatum =  LocalDate.of(1,1,1);
 
     @NotNull
-    private String adresse;
+    private String adresse = "";
 
     @Email
     private String email = null;
@@ -54,13 +56,16 @@ public class BenutzerProfil{
     @Bunt(message="{bunt.fehler}")
     private String lieblingsfarbe = "";
 
-    @NotBlank
+    @NotNull
     private String interessen = "";
 
     private double lat, lon;
 
     @OneToMany(mappedBy = "gebieter")
     private List<Gebot> gebote = new ArrayList<>(); 
+
+    @OneToOne(mappedBy = "benutzerProfil", cascade=CascadeType.REMOVE)
+    private ProjektUser projektUser;
 
     
     public List<Gebot> getGebote() {
@@ -182,6 +187,14 @@ public class BenutzerProfil{
             interessenListe.add(x.trim());
         }   
         return interessenListe;
+    }
+
+    public ProjektUser getProjektUser() {
+        return projektUser;
+    }
+
+    public void setProjektUser(ProjektUser projektUser) {
+        this.projektUser = projektUser;
     }
 
 }
