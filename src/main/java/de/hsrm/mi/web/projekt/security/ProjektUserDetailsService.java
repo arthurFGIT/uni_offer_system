@@ -10,7 +10,7 @@ import de.hsrm.mi.web.projekt.projektuser.ProjektUser;
 import de.hsrm.mi.web.projekt.projektuser.ProjektUserRepository;
 
 @Service
-public class ProjektUserDetailService implements UserDetailsService {
+public class ProjektUserDetailsService implements UserDetailsService {
     
     @Autowired private ProjektUserRepository pUserRepository;
     

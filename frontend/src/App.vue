@@ -1,13 +1,21 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import AboutView from './views/AboutView.vue'
+import { useLogin } from './services/useLogin';
+import GebotView from "./views/GebotView.vue";
+const { logindata } = useLogin()
 </script>
 
 <template>
   <header>
     <div>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <p>Eingeloggt: {{logindata.username}}</p>
+        <div>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/gebot">Gebot</RouterLink>
+          <RouterLink to="/login">Login/Logout</RouterLink>
+        </div>
     </div>
   </header>
       <div>

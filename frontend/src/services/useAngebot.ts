@@ -3,9 +3,11 @@ import type { IAngebotListeItem } from "./IAngebotListeItem";
 import type { IAngebotState } from "./IAngebotState";
 import type { IBackendInfoMessage } from "./IBackendInfoMessage";
 import { Client, type Message } from '@stomp/stompjs';
+import { useLogin } from '@/services/useLogin'
 
 const wsurl = `ws://${window.location.host}/stompbroker`;
 const DEST = "/topic/angebot";
+const { logindata } = useLogin()
 
 
 const angebotState = reactive(<IAngebotState>
@@ -16,7 +18,14 @@ const angebotState = reactive(<IAngebotState>
 )
 
 export function updateAngebote(){
-    fetch('/api/angebot')
+    fetch('/api/angebot',
+    {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${logindata.jwtToken}`,
+        }
+    })
     .then((response) =>{
         if (!response.ok){
             throw new Error(response.statusText)

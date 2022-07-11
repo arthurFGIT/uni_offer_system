@@ -4,9 +4,6 @@
     <div v-if="angebote.errormessage != ''">
         {{angebote.errormessage}}
     </div>
-    <div v-if="angebote.errormessage != ''">
-        {{angebote.errormessage}}
-    </div>
 </template>
 
 <script setup lang="ts">

@@ -1,4 +1,6 @@
 import AngebotViewVue from '@/views/AngebotView.vue'
+import { useLogin } from '@/services/useLogin'
+// const { logindata } = useLogin()
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -12,12 +14,26 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/gebot/:angebotidstr',
+      name: 'angebotidstr',
+      component: () => import('../views/GebotView.vue'),
+      props: true
+    },
+    {
+      path: '/login',
+      name: 'Login',
+
+      component: () => import('../views/LoginView.vue')
     }
   ]
+})
+router.beforeEach( async (to, from) => {
+  if (!useLogin().logindata.loggedin && to.name !== 'Login') {
+  return { name: 'Login' }
+  }
 })
 
 export default router

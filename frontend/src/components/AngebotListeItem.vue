@@ -1,9 +1,8 @@
 <template>
-
     <table class="table">
         <thead>
             <tr>
-                <th>{{item.beschreibung}}</th>
+                <th><RouterLink :to="link">{{item.beschreibung}}</RouterLink></th>
                 <th>{{item.gebote}}</th>
                 <th>{{item.topgebot}}</th>
                 <th style="text-align: right"><button class="btn" @click="open()">V</button></th>
@@ -45,7 +44,7 @@ const props = defineProps<{
 function open(): void{
     isOpen.value = !isOpen.value
 }
-
+const link = `/gebot/${props.item.angebotid}`
 </script>
 
 <style>
